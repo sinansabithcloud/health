@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Health Check</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 340px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            background: #11998e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0f877c;
+        }
+
+        .status {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            display: none;
+        }
+
+        .healthy {
+            color: green;
+        }
+
+        .warning {
+            color: orange;
+        }
+
+        .critical {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>System Health</h1>
+    <p>Click below to run system health check</p>
+
+    <button onclick="checkHealth()">Run Check</button>
+
+    <div id="status" class="status"></div>
+</div>
+
+<script>
+    function checkHealth() {
+        const status = document.getElementById("status");
+        const healthStates = [
+            { text: "✅ System Healthy", class: "healthy" },
+            { text: "⚠️ Warning: High CPU Usage", class: "warning" },
+            { text: "❌ Critical: Service Down", class: "critical" }
+        ];
+
+        const randomStatus = healthStates[Math.floor(Math.random() * healthStates.length)];
+
+        status.className = "status " + randomStatus.class;
+        status.textContent = randomStatus.text;
+        status.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
